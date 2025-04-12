@@ -1,0 +1,28 @@
+name: Terraform Security Scan
+
+on:
+  push:
+    branches: [staging]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    name: Run Terraform Security Scans
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install TFLint
+      run: |
+        curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+        tflint --init
+        tflint
+
+    - name: Run Trivy scan (optional if using Docker)
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        severity: CRITICAL,HIGH
