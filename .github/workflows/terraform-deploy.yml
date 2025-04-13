@@ -31,6 +31,7 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan
+      
 
     - name: Terraform Apply (only on staging)
       if: github.ref == 'refs/heads/staging'
