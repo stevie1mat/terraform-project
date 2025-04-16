@@ -30,9 +30,7 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-      run: terraform plan -input=false
+      run: terraform plan -input=false -var="vpc_cidr=10.0.0.0/16" -var="env_name=staging"
       
-
-    - name: Terraform Apply (only on staging)
-      if: github.ref == 'refs/heads/staging'
-      run: terraform apply -auto-approve
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -input=false -var="vpc_cidr=10.0.0.0/16" -var="env_name=staging"
