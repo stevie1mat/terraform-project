@@ -33,18 +33,18 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         AWS_REGION: us-east-1
       run: terraform plan -input=false -var="vpc_cidr=10.0.0.0/16" -var="env_name=staging"
 
-      
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         AWS_REGION: us-east-1
       run: |
         terraform apply -auto-approve -input=false \
           -var="vpc_cidr=10.0.0.0/16" \
           -var="env_name=${GITHUB_REF##*/}"
-
