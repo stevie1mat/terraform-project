@@ -54,3 +54,12 @@ jobs:
         terraform apply -auto-approve -input=false \
           -var="vpc_cidr=10.0.0.0/16" \
           -var="env_name=staging"
+
+    - name: Trigger Ansible Workflow
+      if: success()
+      run: |
+        curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
+          https://api.github.com/repos/stevie1mat/ansible-final-project/actions/workflows/run-ansible.yml/dispatches \
+          -d '{"ref":"main"}'
