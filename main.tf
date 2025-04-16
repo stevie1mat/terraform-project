@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"  # Or your actual region
+  region = "us-east-1" # Or your actual region
 }
 
 
@@ -68,7 +68,7 @@ module "web1" {
   instance_type       = "t2.micro"
   subnet_id           = module.public_subnet_1.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj"  # Just the key name, NOT .pem
+  key_name            = "proj" # Just the key name, NOT .pem
   env_name            = "Dev"
   name                = "Webserver1"
   associate_public_ip = true
@@ -98,9 +98,9 @@ module "alb" {
 
 
 module "igw" {
-  source            = "./modules/internet_gateway"
-  vpc_id            = module.vpc.vpc_id
-  env_name          = "Dev"
+  source   = "./modules/internet_gateway"
+  vpc_id   = module.vpc.vpc_id
+  env_name = "Dev"
   public_subnet_ids = [
     module.public_subnet_1.subnet_id,
     module.public_subnet_2.subnet_id
