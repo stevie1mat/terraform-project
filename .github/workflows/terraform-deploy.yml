@@ -30,7 +30,7 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -input=false
       
 
     - name: Terraform Apply (only on staging)
