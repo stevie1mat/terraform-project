@@ -9,6 +9,6 @@ variable "env_name" {
 }
 
 variable "public_subnet_ids" {
-  description = "List of public subnet IDs to associate with the route table"
-  type        = list(string)
+  description = "Map of public subnet IDs to associate with the route table"
+  type        = map(string)
 }

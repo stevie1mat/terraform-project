@@ -101,8 +101,8 @@ module "igw" {
   source   = "./modules/internet_gateway"
   vpc_id   = module.vpc.vpc_id
   env_name = "Dev"
-  public_subnet_ids = [
-    module.public_subnet_1.subnet_id,
-    module.public_subnet_2.subnet_id
-  ]
+  public_subnet_ids = {
+    "subnet1" = module.public_subnet_1.subnet_id,
+    "subnet2" = module.public_subnet_2.subnet_id
+  }
 }
