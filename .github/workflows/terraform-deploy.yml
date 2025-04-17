@@ -48,7 +48,7 @@ jobs:
           -var="vpc_cidr=10.0.0.0/16" \
           -var="env_name=staging"
 
-    - name: Terraform Apply (Step 2)
+    - name: Terraform Apply (Step 2 - Remaining)
       if: github.ref == 'refs/heads/main'
       run: |
         terraform apply -auto-approve -input=false \
