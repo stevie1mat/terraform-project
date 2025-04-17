@@ -198,14 +198,14 @@ module "igw" {
 # Load Balancer
 ######################
 module "alb" {
-  source     = "./modules/alb"
-  env_name   = "Prod"
+  source   = "./modules/alb"
+  env_name = "Prod"
   subnet_ids = [
     module.public_subnet_1.subnet_id,
     module.public_subnet_2.subnet_id,
     module.public_subnet_3.subnet_id,
     module.public_subnet_4.subnet_id
   ]
-  vpc_id     = module.vpc.vpc_id
-  sg_id      = module.web_sg.sg_id
+  vpc_id = module.vpc.vpc_id
+  sg_id  = module.web_sg.sg_id
 }
