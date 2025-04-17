@@ -99,7 +99,7 @@ module "web1" {
   instance_type       = "t2.micro"
   subnet_id           = module.public_subnet_1.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = true
 }
@@ -111,7 +111,7 @@ module "web2" {
   instance_type       = "t2.micro"
   subnet_id           = module.public_subnet_2.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = true
 }
@@ -123,7 +123,7 @@ module "web3" {
   instance_type       = "t2.micro"
   subnet_id           = module.public_subnet_3.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = true
 }
@@ -135,7 +135,7 @@ module "web4" {
   instance_type       = "t2.micro"
   subnet_id           = module.public_subnet_4.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = true
 }
@@ -148,7 +148,7 @@ module "bastion" {
   instance_type       = "t2.micro"
   subnet_id           = module.public_subnet_2.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = true
 }
@@ -161,7 +161,7 @@ module "db_server" {
   instance_type       = "t2.micro"
   subnet_id           = module.private_subnet_1.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = false
 }
@@ -174,7 +174,7 @@ module "vm6" {
   instance_type       = "t2.micro"
   subnet_id           = module.private_subnet_2.subnet_id
   sg_id               = module.web_sg.sg_id
-  key_name            = "proj_new"
+  key_name            = "proj"
   env_name            = "Prod"
   associate_public_ip = false
 }
@@ -198,14 +198,14 @@ module "igw" {
 # Load Balancer
 ######################
 module "alb" {
-  source   = "./modules/alb"
-  env_name = "Prod"
+  source     = "./modules/alb"
+  env_name   = "Prod"
   subnet_ids = [
     module.public_subnet_1.subnet_id,
     module.public_subnet_2.subnet_id,
     module.public_subnet_3.subnet_id,
     module.public_subnet_4.subnet_id
   ]
-  vpc_id = module.vpc.vpc_id
-  sg_id  = module.web_sg.sg_id
+  vpc_id     = module.vpc.vpc_id
+  sg_id      = module.web_sg.sg_id
 }
